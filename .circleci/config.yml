@@ -229,11 +229,12 @@ jobs:
       - run:
           name: Run imm test
           command: |
+            git clone https://github.com/bats-core/bats-core.git && cd bats-core && ./install.sh /usr/local              
             . ~/inference-model-manager/.venv/bin/activate
             pip install -q -r ~/inference-model-manager/tests/requirements.txt
             pip install -q -r ~/inference-model-manager/examples/grpc_client/requirements.txt
             cd ~/inference-model-manager/scripts
-            ./test_imm.sh
+            bats imm_test.bats
       - run:
           name: Run tests
           command: |
